@@ -1,0 +1,39 @@
+{
+  "name": "hairdonator",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mvcds/hairdonator.git",
+  "author": "Marcos Vinícius C. da Silva <marvinc.silva@gmail.com>",
+  "description": "A PDT exemple",
+  "license": "MIT",
+  "homepage": "https://slides.com/marcosviniciussilva/pdt-7min",
+  "scripts": {
+    "test": "yarn test:unit",
+    "test:unit": "mocha \"src/**/*.test.js\" --colors --sort --bail --recursive",
+    "coverage": "nyc yarn test"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/**/*.test.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
+}
