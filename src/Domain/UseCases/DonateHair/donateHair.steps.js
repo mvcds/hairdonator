@@ -1,8 +1,8 @@
 const { Given, When, Then } = require('cucumber')
 const { mock } = require('sinon')
 
-const Donator = require('../../Entities/Donator')
-const Patient = require('../../Entities/Patient')
+const Donator = require('../../Entities/Donator/donator.factory')
+const Patient = require('../../Entities/Patient/patient.factory')
 
 const DonateHair = require('./')
 
@@ -19,7 +19,7 @@ Given('a valid donator', function () {
   }
 
   this.args = {
-    donator: new Donator({ hairLength: 6, hairStatus: Donator.HairStatuses.Healthy })
+    donator: Donator.ValidDonator()
   }
 
   this.injection = {
@@ -35,7 +35,7 @@ Given('an invalid donator', function () {
   }
 
   this.args = {
-    donator: new Donator({ hairLength: 3, hairStatus: Donator.HairStatuses.Healthy })
+    donator: Donator.InvalidDonator()
   }
 
   this.injection = {
@@ -44,7 +44,7 @@ Given('an invalid donator', function () {
 })
 
 When('hair is donated', async function () {
-  this.args.patient = new Patient({ email: 'marvinc.silva@gmail.com' })
+  this.args.patient = Patient.RegularPatient()
 
   await DonateHair(this.args, this.injection)
 })

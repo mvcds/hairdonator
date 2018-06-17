@@ -6,9 +6,9 @@ const Statuses = {
 function getErrors () {
   const errors = []
 
-  if (this.hairLength < 5) errors.push('hair too short')
+  if (this.hairLength <= 5) errors.push('hair too short')
 
-  if (this.hairLength > 15) errors.push('hair too long')
+  if (this.hairLength >= 16) errors.push('hair too long')
 
   if (this.hairStatus === Statuses.Unhealthy) errors.push('unhealthy hair')
 
