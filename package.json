@@ -8,8 +8,10 @@
   "license": "MIT",
   "homepage": "https://slides.com/marcosviniciussilva/pdt-7min",
   "scripts": {
-    "test": "yarn test:unit",
+    "test": "yarn test:unit && yarn test:integration",
     "test:unit": "mocha \"src/**/*.test.js\" --colors --sort --bail --recursive",
+    "test:integration": "cucumber-js \"src/Domain/UseCases/**/*.feature\"",
+    "test:watch": "npm-watch test",
     "coverage": "nyc yarn test"
   },
   "nyc": {
@@ -23,7 +25,8 @@
       "src/**/*.js"
     ],
     "exclude": [
-      "src/**/*.test.js"
+      "src/**/*.test.js",
+      "src/**/*.steps.js"
     ],
     "reporter": [
       "lcov",
@@ -32,8 +35,20 @@
     "cache": true,
     "all": true
   },
+  "watch": {
+    "test": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,feature,fixture,pug",
+      "quiet": true
+    }
+  },
   "devDependencies": {
+    "cucumber": "^4.2.1",
     "mocha": "^5.2.0",
-    "nyc": "^12.0.2"
+    "npm-watch": "^0.3.0",
+    "nyc": "^12.0.2",
+    "sinon": "^6.0.0"
   }
 }
